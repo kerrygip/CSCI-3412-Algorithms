@@ -1,0 +1,131 @@
+-------SECTION 2: GETTING STARTED ------------
+
+2.1-1
+Using Figure 2.2 as a model, illustrate the operation of INSERTION-SORT on the
+array A = (31; 41; 59; 26; 41; 58)
+
+31 41 59 26 41 58 - select a key to start(59) and compare left. 59 is bigger than 41, so it stays. Go over 1, 26 and compare left. 26 smaller than 59 so move
+31 41 26 59 41 58 - compare 26 again left and move
+31 26 41 59 41 58 - compare 26 again and move
+26 31 41 59 41 58 - 26 now smalleset number, look at the next key, 41, 41 is smaller than 59 so shift
+26 31 41 41 59 58 - now 58 is smaller than 59 so move again
+26 31 41 41 58 59 - done
+
+
+
+
+2.1-2
+Rewrite the INSERTION-SORT procedure to sort into nonincreasing instead of nondecreasing order.
+- the code on page 18 
+
+Insertion sort(A)
+for j=1 to A.length
+  key = A[j]
+  i = j-1
+  while i>0 and A[i] < key   //switch the sign here to change to decreasing order
+    A[i+1] = A[i]
+    i = i-1
+  A[i+1] = key
+
+2.1-3
+Consider the searching problem:
+Input: A sequence of n numbers A= (a1,a2...a,n) and a value v.
+Output: An index i such that  v=A[i] or the special value NIL if  does not
+appear in A.
+Write pseudocode for linear search, which scans through the sequence, looking
+for v. Using a loop invariant, prove that your algorithm is correct. Make sure that
+your loop invariant fulfills the three necessary properties.
+
+for (i=1; i<A.length; i++)
+  if A[i]==v;
+  return i
+return NIL  
+
+
+2.1-4
+Consider the problem of adding two n-bit binary integers, stored in two n-element
+arrays A and B. The sum of the two integers should be stored in binary form in
+an (n+1) element array C. State the problem formally and write pseudocode for
+adding the two integer
+
+Problem summary: Add arrays and convert numbers to binary
+
+C[n+1] = new array
+//need to find range for sum
+n = MAX(A.length, B.Length)
+
+total = 0
+
+for (i=0; i<n; i++)
+  C[i] = A[i] + B[i] + total 
+  total = (A[i] + B[i]+ total) /2 
+C[n+1] = total
+return C
+
+????
+
+Python code:
+def AddBinary(A, B):
+    carry = 0
+    n = max(len(A), len(B))
+    C = [0 for i in range(n + 1)]
+    for i in range(n):
+        # One of A and B has length less than n
+        # We need to treat index out of bound for that array
+        # This is not explicitly handled in pseudocode
+        a = A[i] if i < len(A) else 0
+        b = B[i] if i < len(B) else 0
+
+        # Modulo for sum and integer division for carry
+        C[i] = (a + b + carry) % 2
+        carry = (a + b + carry) // 2
+    C[n] = carry
+    return C
+
+
+
+
+
+----------SECTION 2.2 : ANALYZING ALGORITHMS------------
+
+
+
+
+2.2-1
+Express the function n^3=1000 / 100n^2 - 100n + 3 in terms of O notation.
+f(n) = n^3
+
+2.2-2
+Consider sorting n numbers stored in array A by first finding the smallest element
+of A and exchanging it with the element in A[1]. Then find the second smallest
+element of A, and exchange it with A[2]. Continue in this manner for the first n 1
+elements of A. Write pseudocode for this algorithm, which is known as selection
+sort. What loop invariant does this algorithm maintain? Why does it need to run
+for only the first n - 1 elements, rather than for all n elements? Give the best-case
+and worst-case running times of selection sort in O notation.
+
+def SelectionSort(A):
+    for i in range(len(A)):
+        minIndex = i
+        for j in range(i + 1, len(A)):
+            if A[j] < A[minIndex] and j != minIndex:
+                minIndex = j
+        A[i], A[minIndex] = A[minIndex], A[i]
+
+2.2-3
+Consider linear search again (see Exercise 2.1-3). How many elements of the input sequence need to be checked on the average, assuming that the element being
+searched for is equally likely to be any element in the array? How about in the
+worst case? What are the average-case and worst-case running times of linear
+search in 0notation? Justify your answers.
+
+Big O would be f(n) = n since there is no squares involved. Worst case would be it having to search the entire thing, average would be n/2 so half of it
+
+
+2.2-4
+How can we modify almost any algorithm to have a good best-case running time?
+Turn it to a merge sort LOL 
+Just make sure it has a best runtime case of f(n) = n
+
+
+
+-------SECTION 2.3 DESIGNING ALGORITHMS -------------
