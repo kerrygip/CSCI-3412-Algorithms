@@ -1,0 +1,30 @@
+GROWTH OF FUNCTIONS
+
+3.1-1
+Let f(n) and g(n) be asymptotically nonnegative functions. Using the basic definition of O notation, prove that max(f(n),g(n)) = O(f(n) + g(n))
+3.1-2
+Show that for any real constants a and b, where b>0,
+(n+a)^b = O(n)^b
+3.1-3
+Explain why the statement, “The running time of algorithm A is at least 0(n^2)” is
+meaningless.
+
+3.1-4
+Is 2^(n+1) = 0(2^n)? 
+Is 2^2n = 0(2^n)
+
+3.1-5
+Prove Theorem 3.1.
+3.1-6
+Prove that the running time of an algorithm is O(g(n)) if and only if its worst-case
+running time is 0(g(n)) and its best-case running time is Omega(g(n))
+3.1-7
+Prove thato(g(n)) V w(g(n)) is the empty set.
+3.1-8
+We can extend our notation to the case of two parameters n and m that can go to
+infinity independently at different rates. For a given function g.n; m/, we denote
+by O.g.n; m// the set of functions
+O.g.n; m// D ff .n; m/ W there exist positive constants c, n0, and m0
+such that 0  f .n; m/  cg.n; m/
+for all n  n0 or m  m0g :
+Give corresponding definitions for .g.n; m// and ‚.g.n; m//.
